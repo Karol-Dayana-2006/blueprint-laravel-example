@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 200);
-            $table->text('content');
-            $table->integer('order_number');
-            $table->foreignId('course_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name', 100);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -30,6 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists('categories');
     }
 };
+

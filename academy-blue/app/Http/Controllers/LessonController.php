@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class LessonController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $lessons = Lesson::all();
 
@@ -20,37 +20,37 @@ class LessonController extends Controller
         ]);
     }
 
-    public function create(Request $request): Response
+    public function create(Request $request)
     {
         return view('lesson.create');
     }
 
-    public function store(LessonStoreRequest $request): Response
+    public function store(LessonStoreRequest $request)
     {
         $lesson = Lesson::create($request->validated());
 
-        $request->session()->flash('lesson.id', $lesson->id);
+        //$request->session()->flash('lesson.id', $lesson->id);
 
         return redirect()->route('lessons.index');
     }
 
-    public function edit(Request $request, Lesson $lesson): Response
+    public function edit(Request $request, Lesson $lesson)
     {
         return view('lesson.edit', [
             'lesson' => $lesson,
         ]);
     }
 
-    public function update(LessonUpdateRequest $request, Lesson $lesson): Response
+    public function update(LessonUpdateRequest $request, Lesson $lesson)
     {
         $lesson->update($request->validated());
 
-        $request->session()->flash('lesson.id', $lesson->id);
+        //$request->session()->flash('lesson.id', $lesson->id);
 
         return redirect()->route('lessons.index');
     }
 
-    public function destroy(Request $request, Lesson $lesson): Response
+    public function destroy(Request $request, Lesson $lesson)
     {
         $lesson->delete();
 

@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
+
         return view('category.index', [
             'categories' => $categories,
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         return view('category.create');
     }
@@ -28,7 +32,7 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    public function edit(Category $category)
+    public function edit(Request $request, Category $category)
     {
         return view('category.edit', [
             'category' => $category,
@@ -38,7 +42,7 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, Category $category)
     {
         $category->update($request->validated());
-        session()->flash('success', 'Registro actualizado exitosamente');
+        session()->flash('success', 'Registro modificado exitosamente');
         return redirect()->route('categories.index');
     }
 

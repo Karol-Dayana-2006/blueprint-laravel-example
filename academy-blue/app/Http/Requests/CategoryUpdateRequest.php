@@ -21,15 +21,15 @@ class CategoryUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'descrption' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return [
-            'name' =>  'nombre',
-            'description' => 'descripción'
+            'name' => 'nombre',
+            'description' => 'descripción',
         ];
     }
 }

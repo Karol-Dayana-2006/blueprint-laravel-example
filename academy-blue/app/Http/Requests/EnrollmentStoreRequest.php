@@ -21,8 +21,8 @@ class EnrollmentStoreRequest extends FormRequest
     {
         return [
             'student_id' => ['required', 'integer', 'exists:users.id,id'],
-            'course_id' => ['required', 'integer', 'exists:courses,id'],
-            'enrollments_date' => ['required'],
+            'course_id' => ['required', 'integer', 'exists:courses.id,id'],
+            'enrollment_date' => ['required'],
             'status' => ['required', 'in:activo,completado,cancelado'],
         ];
     }

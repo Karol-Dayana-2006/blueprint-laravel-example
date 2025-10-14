@@ -14,8 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('category.index');
 });
+
+
+Route::resource('categories', App\Http\Controllers\CategoryController::class);
+
+Route::resource('courses', App\Http\Controllers\CourseController::class)->except('show');
+
+Route::resource('lessons', App\Http\Controllers\LessonController::class);
+
+Route::resource('enrollments', App\Http\Controllers\EnrollmentController::class);
 
 
 Route::resource('categories', App\Http\Controllers\CategoryController::class)->except('show');
@@ -24,4 +33,4 @@ Route::resource('courses', App\Http\Controllers\CourseController::class)->except
 
 Route::resource('lessons', App\Http\Controllers\LessonController::class)->except('show');
 
-Route::resource('enrollments', App\Http\Controllers\EnrollmentsController::class)->except('show');
+Route::resource('enrollments', App\Http\Controllers\EnrollmentController::class)->except('show');

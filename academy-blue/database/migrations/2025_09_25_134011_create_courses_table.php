@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('enrollments', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('course_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->timestamps('enrollments_date');
-            $table->enum('status', ["activo","completado","cancelado"]);
-            $table->unique(['student_id', 'course_id']);
+            $table->string('title', 200);
+            $table->text('description')->nullable();
+            $table->integer('price');
+            $table->foreignId('instructor_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enrollments');
+        Schema::dropIfExists('courses');
     }
 };

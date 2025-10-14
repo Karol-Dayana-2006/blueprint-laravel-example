@@ -23,7 +23,7 @@ class LessonStoreRequest extends FormRequest
             'title' => ['required', 'string', 'max:200'],
             'content' => ['required', 'string'],
             'order_number' => ['required', 'integer'],
-            'course_id' => ['required', 'integer', 'exists:courses,id'],
+            'course_id' => ['required', 'integer', 'exists:courses.id,id'],
         ];
     }
 }

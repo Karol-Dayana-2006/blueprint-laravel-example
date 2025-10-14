@@ -2,26 +2,26 @@ created:
     - app/Http/Controllers/CategoryController.php
     - app/Http/Controllers/CourseController.php
     - app/Http/Controllers/LessonController.php
-    - app/Http/Controllers/EnrollmentsController.php
+    - app/Http/Controllers/EnrollmentController.php
     - database/factories/UserFactory.php
     - database/factories/CategoryFactory.php
     - database/factories/CourseFactory.php
     - database/factories/LessonFactory.php
-    - database/factories/EnrollmentsFactory.php
-    - database/migrations/2025_09_25_133320_create_users_table.php
-    - database/migrations/2025_09_25_133321_create_categories_table.php
-    - database/migrations/2025_09_25_133322_create_courses_table.php
-    - database/migrations/2025_09_25_133323_create_lessons_table.php
-    - database/migrations/2025_09_25_133324_create_enrollments_table.php
+    - database/factories/EnrollmentFactory.php
+    - database/migrations/2025_09_23_021241_create_users_table.php
+    - database/migrations/2025_09_23_021242_create_categories_table.php
+    - database/migrations/2025_09_23_021243_create_courses_table.php
+    - database/migrations/2025_09_23_021244_create_lessons_table.php
+    - database/migrations/2025_09_23_021245_create_enrollments_table.php
     - app/Models/User.php
     - app/Models/Category.php
     - app/Models/Course.php
     - app/Models/Lesson.php
-    - app/Models/Enrollments.php
+    - app/Models/Enrollment.php
     - tests/Feature/Http/Controllers/CategoryControllerTest.php
     - tests/Feature/Http/Controllers/CourseControllerTest.php
     - tests/Feature/Http/Controllers/LessonControllerTest.php
-    - tests/Feature/Http/Controllers/EnrollmentsControllerTest.php
+    - tests/Feature/Http/Controllers/EnrollmentControllerTest.php
     - app/Http/Requests/CategoryStoreRequest.php
     - app/Http/Requests/CategoryUpdateRequest.php
     - app/Http/Requests/CourseStoreRequest.php
@@ -46,7 +46,7 @@ updated:
     - routes/web.php
 models:
     User: { name: string, email: 'string unique', password: string, role: 'enum:estudiante,instructor,admin', timestamps: timestamps }
-    Category: { name: 'string:100', descrption: 'text nullable', timestamps: timestamps }
-    Course: { title: 'string:200', descrption: 'text nullable', price: integer, instructor_id: 'id foreign:users.id onDelete:cascade onUpdate:cascade', category_id: 'id foreign:categories.id onDelete:cascade onUpdate:cascade', timestamps: timestamps }
-    Lesson: { title: 'string:200', content: text, order_number: integer, course_id: 'id foreign onDelete:cascade onUpdate:cascade', timestamps: timestamps }
-    Enrollments: { student_id: 'id foreign:users.id onDelete:cascade onUpdate:cascade', course_id: 'id foreign onDelete:cascade onUpdate:cascade', enrollments_date: timestamps, status: 'enum:activo,completado,cancelado', indexes: [{ unique: 'student_id, course_id' }], timestamps: timestamps }
+    Category: { name: 'string:100', description: 'text nullable', timestamps: timestamps }
+    Course: { title: 'string:200', description: 'text nullable', price: integer, instructor_id: 'id foreign:users.id onDelete:cascade onUpdate:cascade', category_id: 'id foreign:categories.id onDelete:cascade onUpdate:cascade' }
+    Lesson: { title: 'string:200', content: text, order_number: integer, course_id: 'id foreign:courses.id onDelete:cascade onUpdate:cascade', timestamps: timestamps }
+    Enrollment: { student_id: 'id foreign:users.id onDelete:cascade onUpdate:cascade', course_id: 'id foreign:courses.id onDelete:cascade onUpdate:cascade', enrollment_date: timestamp, status: 'enum:activo,completado,cancelado', indexes: [{ unique: 'student_id, course_id' }] }

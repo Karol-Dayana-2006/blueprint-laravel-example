@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'descrption' => fake()->text(),
+            'description' => fake()->text(),
         ];
     }
 }

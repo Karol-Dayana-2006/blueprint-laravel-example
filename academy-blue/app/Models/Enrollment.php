@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Enrollments extends Model
+class Enrollment extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,7 @@ class Enrollments extends Model
     protected $fillable = [
         'student_id',
         'course_id',
-        'enrollments_date',
+        'enrollment_date',
         'status',
     ];
 
@@ -33,7 +33,7 @@ class Enrollments extends Model
             'id' => 'integer',
             'student_id' => 'integer',
             'course_id' => 'integer',
-            'enrollments_date' => 'timestamp',
+            'enrollment_date' => 'timestamp',
         ];
     }
 

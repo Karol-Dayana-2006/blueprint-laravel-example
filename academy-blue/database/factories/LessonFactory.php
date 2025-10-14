@@ -24,7 +24,7 @@ class LessonFactory extends Factory
         return [
             'title' => fake()->sentence(4),
             'content' => fake()->paragraphs(3, true),
-            'order_number' => fake()->numberBetween(1, 10),
+            'order_number' => fake()->numberBetween(-10000, 10000),
             'course_id' => Course::factory(),
         ];
     }
